@@ -19,6 +19,7 @@ public class U7_EJ3App {
 		
 		Hashtable<String,String> item_price = new Hashtable<String,String>();		
 		boolean end = false;
+	
 		while(!end){
 			System.out.println("\nQue accion quieres realizar?\n "
 					+ "1 - Añadir un nuevo producto?\n 2 - Consultar la info almacenada de algun producto concreto?\n"
@@ -28,6 +29,10 @@ public class U7_EJ3App {
 			
 			switch(option) {
 			case 1:
+				if(item_price.size() == MAX_PROD) {
+					System.out.println("No se pueden introducir más datos");
+					break;
+				}
 				addItem(item_price);
 				break;
 			case 2:
@@ -73,7 +78,7 @@ public class U7_EJ3App {
 		Enumeration<String> listPrices = data.elements();
 		Enumeration<String> listItems = data.keys();
 		while(listItems.hasMoreElements()) {
-			System.out.println("El producto "+listItems.nextElement()+"tiene un precio de "+listPrices.nextElement());
+			System.out.println("El producto "+listItems.nextElement()+" tiene un precio de "+listPrices.nextElement());
 		}
 		
 	}
