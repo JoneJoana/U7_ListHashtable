@@ -36,9 +36,8 @@ public class U7_EJ1App {
 		String student = lector.nextLine();
 		
 		System.out.println("Indica las notas del alumno del curso. Introduce -1 cuando hayas terminado");		
-		ArrayList<Integer> grades = addGrades(lector);		//en grades guardamos la lista de notas
-				
-		avgGradeStudent.put(student,resultAvgGrade(grades));	//añadimos al hastable, el nombre y la nota media calculada
+						
+		avgGradeStudent.put(student,resultAvgGrade(addGrades(lector)));	//añadimos al hastable, el nombre y la nota media calculada
 		
 	}
 

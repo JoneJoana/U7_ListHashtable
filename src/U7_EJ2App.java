@@ -28,7 +28,7 @@ public class U7_EJ2App {
 		
 		//System.out.println(precios.toString());
 		
-		for(int i=0;i<precios.size();i++) { //recorremos list creado para calcular iva de cada producto, y recoger los datos que necesitaremos para otros calculos
+		for(int i=0;i<precios.size();i++) {//recorremos list creado para calcular iva de cada producto y generar los datos que mostraremos
 			calculoIVA(precios,i);
 			counter++;
 			sum += precios.get(i);
