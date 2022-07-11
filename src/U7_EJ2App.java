@@ -24,11 +24,11 @@ public class U7_EJ2App {
 		int sum = 0;
 		
 		System.out.println("Introduce los precios de cada compra del carrito.\nIntroduce -1 para finalizar.");
-		addPrices(sc,precios);
+		addPricesToList(sc,precios);
 		
 		//System.out.println(precios.toString());
 		
-		for(int i=0;i<precios.size();i++) {
+		for(int i=0;i<precios.size();i++) { //recorremos list creado para calcular iva de cada producto, y recoger los datos que necesitaremos para otros calculos
 			calculoIVA(precios,i);
 			counter++;
 			sum += precios.get(i);
@@ -40,6 +40,9 @@ public class U7_EJ2App {
 		
 		int change = cantidadPagada-sum;
 		
+		sc.close();
+		
+		//mostramos los datos finales de la compra
 		System.out.println("\nLa cantidad de productos comprados es: "+counter);
 		System.out.println("El precio total de la compra ha sido: "+sum);
 		System.out.println("La cantidad pagada ha sido: "+cantidadPagada);
@@ -48,7 +51,7 @@ public class U7_EJ2App {
 		
 	}
 
-	private static void addPrices(Scanner sc, ArrayList<Integer> precios) {
+	private static void addPricesToList(Scanner sc, ArrayList<Integer> precios) {
 		
 		boolean end = false;
 		while(!end){
@@ -70,8 +73,7 @@ public class U7_EJ2App {
 		int valorCompra = precios.get(posicion);
 		
 		System.out.println("\nIndica el IVA del producto "+(posicion+1)+". Normal o reducido?");
-		String iva = sc.nextLine();	
-		sc.close();
+		String iva = sc.nextLine();			
 		
 		if(iva.equalsIgnoreCase("Normal")) {
 			precioSinIVA = valorCompra - (valorCompra*IVA1);
