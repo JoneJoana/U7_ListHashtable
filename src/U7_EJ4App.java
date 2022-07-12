@@ -145,10 +145,12 @@ public class U7_EJ4App {
 						
 		data.put(name,price);		
 		
-		if(listStock.get(name).equals(data.get(name))) {
-			listStock.replace(name,-1);
+		if(option==VENTA) {
+			if(listStock.containsKey(name)) {
+				listStock.put(name,listStock.get(name)-1);
+			}
 		}
-		
+				
 	}
 	
 	private static void consultInfoItem(Hashtable<String,String> data,Hashtable<String,Integer> listStock){
