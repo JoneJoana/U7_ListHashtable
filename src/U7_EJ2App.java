@@ -18,35 +18,25 @@ public class U7_EJ2App {
 		 * 	cambio a devolver
 		 */			
 		
-		ArrayList<Integer> precios = new ArrayList<>();		
-		int sum = 0;
+		ArrayList<Integer> precios = new ArrayList<>();			
 		
 		System.out.println("Introduce los precios de la compra del carrito.\nIntroduce -1 para finalizar.");
+		
 		addPricesToList(precios);
 		
-		//System.out.println(precios.toString());
+		showIVA(precios);	
 		
-		for(int pos=0;pos<precios.size();pos++) {//recorremos list creado para calcular iva de cada producto y generar la suma total
-			calculoIVA(precios,pos);
-			sum += precios.get(pos);
-		}
+		System.out.println("\nLa cantidad de productos comprados es: "+precios.size());
 		
-		System.out.println("\nCuanto ha pagado el cliente?");
-		int cantidadPagada = LECTOR.nextInt();
-		LECTOR.nextLine();	
+		knowChange(precios);			
 		
-		int change = cantidadPagada-sum;
 		
 		LECTOR.close();
 		
-		//mostramos los datos finales de la compra
-		System.out.println("\nLa cantidad de productos comprados es: "+precios.size());
-		System.out.println("El precio total de la compra ha sido: "+sum);
-		System.out.println("La cantidad pagada ha sido: "+cantidadPagada);
-		System.out.println("La cantidad a devolver es: "+change);		
-		
 	}
 
+	// --- metodos ordenados desde los mas "visibles" a los mas "internos" 
+	
 	private static void addPricesToList(ArrayList<Integer> precios) {
 		
 		boolean end = false;
@@ -62,8 +52,38 @@ public class U7_EJ2App {
 			}			
 		}
 	}
+	
+	
+	private static void showIVA(ArrayList<Integer> precios) {
+		for(int pos=0;pos<precios.size();pos++) {//recorremos list creado para calcular iva de cada producto y generar la suma total
+			knowIVA(precios,pos);			
+		}		
+	}
+	
+	
+	private static void knowChange(ArrayList<Integer> precios) {
+		
+		int sum = 0;
+		int change;
+		
+		System.out.println("\nCuanto ha pagado el cliente?");
+		int cantidadPagada = LECTOR.nextInt();
+		LECTOR.nextLine();		
+		
+		for(int pos=0;pos<precios.size();pos++) {//recorremos list creado para calcular iva de cada producto y generar la suma total
+			sum += precios.get(pos);		
+		}
+		
+		change = cantidadPagada-sum;
+		
+		System.out.println("El precio total de la compra ha sido: "+sum);
+		System.out.println("La cantidad pagada ha sido: "+cantidadPagada);
+		System.out.println("La cantidad a devolver es: "+change);
+		
+	}
 
-	private static void calculoIVA(ArrayList<Integer> precios, int posicion) {
+
+	private static void knowIVA(ArrayList<Integer> precios, int posicion) {
 		
 		double precioSinIVA;
 		int valorCompra = precios.get(posicion);
