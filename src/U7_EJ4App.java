@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class U7_EJ4App {
 	
 	static Scanner lector = new Scanner(System.in);
-	final static int MAX_PROD = 10;
+	//final static int MAX_PROD = 10;
 	final static int STOCK = 1, VENTA = 2;
 	final static double IVA1 = 0.21;
 	final static double IVA2 = 0.04;
@@ -52,8 +52,8 @@ public class U7_EJ4App {
 		boolean end = false;
 		while(!end) {
 			System.out.println("\nQue accion quieres realizar?\n "
-					+ "1 - añadir producto comprado?\n 2 - Calcular el IVA del producto?\n 3 - Saber suma total de las ventas?\n "
-					+ "4 - Saber cantidad de ventas?\n 5 - Mostrar todas las compras introducidas\n Para salir pulsa 0");
+					+ "1 - añadir producto comprado\n 2 - Calcular el IVA del producto\n 3 - Saber suma total de las ventas\n "
+					+ "4 - Saber cantidad de ventas\n 5 - Mostrar todas las compras introducidas\n 6 - Saber el cambio a dar\n Para salir pulsa 0");
 			int option = lector.nextInt();
 			lector.nextLine();
 			
@@ -85,6 +85,8 @@ public class U7_EJ4App {
 					System.out.println("Introduce primero algun producto");
 				}					
 				break;
+			case 6:
+				whichChange(item_priceVenta);
 			default:
 				System.out.println("EXIT");
 				end = true;				
@@ -98,8 +100,8 @@ public class U7_EJ4App {
 		boolean end = false;
 		while(!end){
 			System.out.println("\nQue accion quieres realizar?\n "
-					+ "1 - Añadir un nuevo producto?\n 2 - Consultar la info almacenada de algun producto concreto?\n"
-					+ " 3 - Listar toda la info almacenada?\n Para salir pulsa 0");
+					+ "1 - Añadir un nuevo producto\n 2 - Consultar la info almacenada de algun producto concreto\n"
+					+ " 3 - Listar toda la info almacenada\n Para salir pulsa 0");
 			int option = lector.nextInt();
 			lector.nextLine();
 			
@@ -179,6 +181,7 @@ public class U7_EJ4App {
 		
 	}
 	
+	
 	private static void calculoSinIVA(Hashtable<String,String> item_priceVenta) {
 		
 		double precioSinIVA;
@@ -202,7 +205,8 @@ public class U7_EJ4App {
 		System.out.println("El precio con iva del producto es "+precio+".\nEl precio bruto del producto es "+precioSinIVA);		
 	}
 	
-	private static void sumaVentas(Hashtable<String, String> item_priceVenta) {
+	
+	private static int sumaVentas(Hashtable<String, String> item_priceVenta) {
 		Enumeration<String> ventas = item_priceVenta.elements();
 		int sum = 0;
 		
@@ -211,6 +215,17 @@ public class U7_EJ4App {
 		}		
 		
 		System.out.println("La suma total de las ventas es de "+sum);
+		return sum;
+	}
+	
+	
+	private static void whichChange(Hashtable<String, String> item_priceVenta) {
+		System.out.println("\nCuanto ha pagado el cliente?");
+		int cantidadPagada = lector.nextInt();
+		lector.nextLine();	
+		
+		int change = cantidadPagada-sumaVentas(item_priceVenta);
+		System.out.println("La cantidad a devolver es: "+change);
 	}
 		
 }
